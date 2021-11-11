@@ -31,5 +31,19 @@ public class PostController {
     }
 
 
+    @GetMapping("/{id}")
+    public Post fetchPostById(@PathVariable Long id){
+        return postService.fetchPostById(id);
+    }
 
+    @PutMapping("/{id}")
+   public Post updatePost(@PathVariable Long id, @RequestBody PostDto postDto){
+     return postService.updatePost(id,postDto);
+   }
+
+   @DeleteMapping("/{id}")
+   public String deletePost(@PathVariable Long id){
+       postService.deletePostById(id);
+        return "Post with id " + id + " is successfully deleted";
+   }
 }

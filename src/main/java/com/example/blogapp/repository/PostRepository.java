@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    public Post findPostByTitle(String postTitle);
+     Post findPostByTitle(String postTitle);
 }

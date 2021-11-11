@@ -48,4 +48,28 @@ public class PostServiceImpl implements PostService{
 
         return commentService.addComment(commentDto);
     }
+
+    @Override
+    public Post updatePost(Long id, PostDto postDto) {
+
+        if(postDto == null){
+            throw new IllegalArgumentException("Post cannot be empty");
+        }
+
+        Post postDB = postRepository.findById(id).get();
+
+        modelMapper.map(postDto, postDB);
+        postRepository.save(postDB);
+        return postDB;
+    }
+
+    @Override
+    public Post fetchPostById(Long id) {
+        return postRepository.findById(id).get();
+    }
+
+    @Override
+    public void deletePostById(Long id) {
+        postRepository.deleteById(id);
+    }
 }

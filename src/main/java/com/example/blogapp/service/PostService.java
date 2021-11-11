@@ -16,4 +16,10 @@ public interface PostService {
     Post findPostByTitle(String postTitle);
 
     Comment getComments(CommentDto commentDto);
+
+    Post updatePost(Long id, PostDto postDto);
+
+    Post fetchPostById(Long id);
+
+    void deletePostById(Long id);
 }
