@@ -4,12 +4,14 @@ import com.example.blogapp.dto.CommentDto;
 import com.example.blogapp.dto.PostDto;
 import com.example.blogapp.entity.Comment;
 import com.example.blogapp.entity.Post;
+import com.example.blogapp.exception.PostErrorException;
 import com.example.blogapp.repository.PostRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class PostServiceImpl implements PostService{
@@ -44,16 +46,16 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public Comment getComments(CommentDto commentDto) {
+    public Comment getComments(CommentDto commentDto) throws PostErrorException {
 
         return commentService.addComment(commentDto);
     }
 
     @Override
-    public Post updatePost(Long id, PostDto postDto) {
+    public Post updatePost(Long id, PostDto postDto) throws PostErrorException {
 
-        if(postDto == null){
-            throw new IllegalArgumentException("Post cannot be empty");
+        if("".equalsIgnoreCase(postDto.getBody())){
+            throw new PostErrorException("Post title or body cannot be empty");
         }
 
         Post postDB = postRepository.findById(id).get();

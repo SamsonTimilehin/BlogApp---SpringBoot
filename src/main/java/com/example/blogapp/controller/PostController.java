@@ -2,6 +2,7 @@ package com.example.blogapp.controller;
 
 import com.example.blogapp.dto.PostDto;
 import com.example.blogapp.entity.Post;
+import com.example.blogapp.exception.PostErrorException;
 import com.example.blogapp.service.CommentService;
 import com.example.blogapp.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
-   public Post updatePost(@PathVariable Long id, @RequestBody PostDto postDto){
+   public Post updatePost(@PathVariable Long id, @RequestBody PostDto postDto) throws PostErrorException {
      return postService.updatePost(id,postDto);
    }
 

@@ -2,6 +2,7 @@ package com.example.blogapp.controller;
 
 import com.example.blogapp.dto.CommentDto;
 import com.example.blogapp.entity.Comment;
+import com.example.blogapp.exception.PostErrorException;
 import com.example.blogapp.service.CommentService;
 import com.example.blogapp.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class CommentController {
     private PostService postService;
 
     @PostMapping
-    public Comment addComment(@RequestBody CommentDto commentDto){
+    public Comment addComment(@RequestBody CommentDto commentDto) throws PostErrorException {
         return postService.getComments(commentDto);
     }
 }

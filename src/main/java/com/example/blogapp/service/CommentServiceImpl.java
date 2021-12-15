@@ -3,6 +3,7 @@ package com.example.blogapp.service;
 import com.example.blogapp.dto.CommentDto;
 import com.example.blogapp.entity.Comment;
 import com.example.blogapp.entity.Post;
+import com.example.blogapp.exception.PostErrorException;
 import com.example.blogapp.repository.CommentRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,11 @@ public class CommentServiceImpl implements CommentService{
 
 
     @Override
-    public Comment addComment(CommentDto commentDto) {
+    public Comment addComment(CommentDto commentDto) throws PostErrorException {
         Post postDB = postService.findPostByTitle(commentDto.getPostTitle());
+        if(postDB == null){
+            throw new PostErrorException("Post title "+ commentDto.getPostTitle() + " does not exist");
+        }
         Comment comment;
         comment = modelMapper.map(commentDto, Comment.class);
         comment.setPost(postDB);
