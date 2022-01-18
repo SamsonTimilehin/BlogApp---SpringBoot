@@ -5,6 +5,9 @@ import com.example.blogapp.entity.Post;
 import com.example.blogapp.exception.PostErrorException;
 import com.example.blogapp.service.CommentService;
 import com.example.blogapp.service.PostService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +23,11 @@ public class PostController {
     @Autowired
     private CommentService commentService;
 
+    @Operation(summary = "This endpoint is used to save user's post to mysql database")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "It return post object")
 
+    })
     @PostMapping
     public Post createPost(@RequestBody PostDto postDto){
 
