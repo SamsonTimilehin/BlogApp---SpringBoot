@@ -20,6 +20,7 @@ public class PostController {
     @Autowired
     private CommentService commentService;
 
+
     @PostMapping
     public Post createPost(@RequestBody PostDto postDto){
 
