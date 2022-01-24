@@ -25,7 +25,7 @@ public class PostController {
 
     @Operation(summary = "This endpoint is used to save user's post to mysql database")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "It return post object")
+            @ApiResponse(responseCode = "200", description = "It will return post object")
 
     })
     @PostMapping
