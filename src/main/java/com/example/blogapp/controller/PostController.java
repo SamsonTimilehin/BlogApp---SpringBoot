@@ -20,9 +20,6 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @Autowired
-    private CommentService commentService;
-
     @Operation(summary = "This endpoint is used to save user's post to mysql database")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "It will return post object")
