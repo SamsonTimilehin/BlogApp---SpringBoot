@@ -1,5 +1,6 @@
 package com.example.blogapp.service;
 
+import com.example.blogapp.dto.PostDto;
 import com.example.blogapp.entity.DatabaseFile;
 import com.example.blogapp.exception.FileStorageException;
 import com.example.blogapp.repository.DatabaseFileRepository;
@@ -31,5 +32,11 @@ public class DatabaseFileServiceImpl implements DatabaseFileService{
         }catch (IOException ex){
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
         }
+    }
+
+    @Override
+    public void postUnderUploadedFile(PostDto postDto, DatabaseFile databaseFile) {
+        dbFileRepository.findByFileName(databaseFile.getFileName());
+
     }
 }

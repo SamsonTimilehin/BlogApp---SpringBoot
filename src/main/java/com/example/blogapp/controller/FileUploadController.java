@@ -1,9 +1,11 @@
 package com.example.blogapp.controller;
 
 
+import com.example.blogapp.dto.PostDto;
 import com.example.blogapp.entity.DatabaseFile;
 import com.example.blogapp.entity.Response;
 import com.example.blogapp.service.DatabaseFileService;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,5 +31,10 @@ public class FileUploadController {
 
         return new Response(fileName.getFileName(), fileDownloadUri,
                 file.getContentType(), file.getSize());
+    }
+
+    @PostMapping("/postToUploadedFile")
+    public void postUnderFile(@RequestBody PostDto postDto, DatabaseFile databaseFile){
+       fileStorageService.postUnderUploadedFile(postDto, databaseFile);
     }
 }
