@@ -7,6 +7,7 @@ import com.example.blogapp.exception.PostErrorException;
 import com.example.blogapp.repository.CommentRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 
@@ -23,7 +24,7 @@ public class CommentServiceImpl implements CommentService{
     private CommentRepository commentRepository;
 
 
-
+    @CacheEvict(value = "Post", allEntries = true)
     @Override
     public Comment addComment(CommentDto commentDto) throws PostErrorException {
         Post postDB = postService.findPostByTitle(commentDto.getPostTitle());

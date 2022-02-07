@@ -8,6 +8,7 @@ import com.example.blogapp.exception.PostErrorException;
 import com.example.blogapp.repository.PostRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -64,7 +65,7 @@ public class PostServiceImpl implements PostService{
         postRepository.save(postDB);
         return postDB;
     }
-
+    @Cacheable("Post")
     @Override
     public Post fetchPostById(Long id) {
         return postRepository.findById(id).get();
