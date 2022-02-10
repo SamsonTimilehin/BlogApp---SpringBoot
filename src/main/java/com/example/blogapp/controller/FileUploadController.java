@@ -34,7 +34,7 @@ public class FileUploadController {
     }
 
     @PostMapping("/postToUploadedFile")
-    public void postUnderFile(@RequestBody PostDto postDto, DatabaseFile databaseFile){
-       fileStorageService.postUnderUploadedFile(postDto, databaseFile);
+    public void postUnderFile(@RequestBody PostDto postDto,@RequestParam("name") String name, DatabaseFile databaseFile){
+       fileStorageService.postUnderUploadedFile(postDto,name, databaseFile);
     }
 }

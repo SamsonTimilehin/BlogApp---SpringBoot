@@ -9,5 +9,5 @@ public interface DatabaseFileService {
 
     DatabaseFile storeFile(MultipartFile file);
 
-    void postUnderUploadedFile(PostDto postDto, DatabaseFile databaseFile);
+    void postUnderUploadedFile(PostDto postDto, String name, DatabaseFile databaseFile);
 }
